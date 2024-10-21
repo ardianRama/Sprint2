@@ -1,9 +1,11 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
 
     Main(){
-        String inFile = "src/Personuppgifter.txt";
+        Path inFile = Paths.get("src/Personuppgifter.txt");
         String outFile = "src/Gymbesökare.txt";
 
         List<Person> personList = IOUtility.readDataFromFile(inFile);

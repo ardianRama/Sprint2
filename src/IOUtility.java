@@ -1,6 +1,5 @@
 import java.io.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,12 +9,11 @@ import java.util.Scanner;
 
 public class IOUtility {
 
-    public static List<Person> readDataFromFile(String readFromFile) {
+    public static List<Person> readDataFromFile(Path readFromFile) {
 
         List<Person> personList = new ArrayList<>();
-        Path inFilePath = Paths.get(readFromFile);
 
-        try (Scanner scan = new Scanner(inFilePath)) {
+        try (Scanner scan = new Scanner(readFromFile)) {
             while (scan.hasNext()) {
                 String firstLine = scan.nextLine();
                 String[] firstLineData = firstLine.split(",");
@@ -30,8 +28,16 @@ public class IOUtility {
                     personList.add(p);
                 }
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Filen kunde inte hittas");
+            e.printStackTrace();
+            System.exit(0);
         } catch (IOException e) {
-            System.out.println("Gick inte att läsa från fil");
+            System.out.println("Det gick inte att läsa från fil");
+            e.printStackTrace();
+            System.exit(0);
+        } catch (Exception e) {
+            System.out.println("Något gick fel");
             e.printStackTrace();
             System.exit(0);
         }
