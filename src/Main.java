@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Main {
 
-    Main(){
+    Main() {
         Path inFile = Paths.get("src/Personuppgifter.txt");
         String outFile = "src/Gymbesökare.txt";
 
@@ -14,7 +14,7 @@ public class Main {
         boolean validMembership = Gym.validateGymMembership(foundPerson);
 
         if (validMembership) {
-           IOUtility.writeDataToFile(outFile, foundPerson);
+            IOUtility.writeDataToFile(outFile, foundPerson);
         }
     }
 

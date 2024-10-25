@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateUtility {
 
-    public static LocalDate convertLocalDateFromString (String date) {
+    public static LocalDate convertLocalDateFromString(String date) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, dtf);
     }
