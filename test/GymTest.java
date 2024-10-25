@@ -17,17 +17,13 @@ class GymTest {
 
     @Test
     void findPersonByFullNameOrPersonNr() {
-        assertEquals(member.getName(), persons.get(0).getName());
-        assertEquals(member.getPersonNr(), persons.get(0).getPersonNr());
-        assertFalse("Pia Svensson" == persons.get(0).getName());
-        assertFalse("9204091245" == persons.get(0).getPersonNr());
+        assertEquals(member, Gym.findPersonByFullNameOrPersonNr(member.getLowerCaseName(), persons));
+        assertEquals(member, Gym.findPersonByFullNameOrPersonNr(member.getPersonNr(), persons));
 
-        assertEquals(notMemberAnyMore.getName(), persons.get(1).getName());
-        assertEquals(notMemberAnyMore.getPersonNr(), persons.get(1).getPersonNr());
-        assertFalse("Johan Svensson" == notMemberAnyMore.getName());
-        assertFalse("8904172182" == notMemberAnyMore.getPersonNr());
+        assertEquals(notMemberAnyMore, Gym.findPersonByFullNameOrPersonNr(notMemberAnyMore.getLowerCaseName(), persons));
+        assertEquals(notMemberAnyMore, Gym.findPersonByFullNameOrPersonNr(notMemberAnyMore.getPersonNr(), persons));
 
-
+        //kolla om en expected null (person som inte finns med i listan) är null
         assertNull(Gym.findPersonByFullNameOrPersonNr(unauthorized.getName(), persons));
         assertNull(Gym.findPersonByFullNameOrPersonNr(unauthorized.getPersonNr(), persons));
     }
